@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<states:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:designtime="http:///com/tibco/cep/designtime/core/model/designtime_ontology.ecore" xmlns:states="http:///com/tibco/cep/designtime/core/model/states" folder="/Concepts/" name="ClockStateMain" description="" GUID="BC6EAAA0-B0D6-8104-7645-27FB3B01926B" ownerProjectName="Demo" main="true" ownerConceptPath="/Concepts/Clock">
+  <extendedProperties>
+    <properties xsi:type="designtime:ObjectProperty" name="Backing Store">
+      <value xsi:type="designtime:PropertyMap">
+        <properties xsi:type="designtime:SimpleProperty" name="Table Name" value=""/>
+        <properties xsi:type="designtime:SimpleProperty" name="Type Name" value=""/>
+        <properties xsi:type="designtime:SimpleProperty" name="hasBackingStore" value="true"/>
+      </value>
+    </properties>
+    <properties xsi:type="designtime:ObjectProperty" name="Cache">
+      <value xsi:type="designtime:PropertyMap">
+        <properties xsi:type="designtime:SimpleProperty" name="Constant [true | false]" value="false"/>
+        <properties xsi:type="designtime:SimpleProperty" name="Check for Version [true | false]" value="true"/>
+        <properties xsi:type="designtime:SimpleProperty" name="Is Cache Limited[true | false]" value="true"/>
+        <properties xsi:type="designtime:SimpleProperty" name="Evict From Cache on Update [true | false]" value="true"/>
+      </value>
+    </properties>
+  </extendedProperties>
+  <timeoutAction name="ClockStateMain_timeoutAction" ownerProjectName="Demo" actionText="" conditionText="">
+    <symbols>
+      <symbolList idName="clock" type="/Concepts/Clock"/>
+    </symbols>
+  </timeoutAction>
+  <timeoutExpression name="ClockStateMain_timeoutExpression" ownerProjectName="Demo" returnType="long" actionText="return 0;" conditionText="" validity="CONDITION">
+    <symbols>
+      <symbolList idName="clock" type="/Concepts/Clock"/>
+    </symbols>
+  </timeoutExpression>
+  <stateEntities xsi:type="states:StateStart" name="Start" GUID="27E544AC-22A7-1E50-5321-9843097D0374" ownerStateMachinePath="/Concepts/ClockStateMain" outgoingTransitions="//@stateTransitions.0">
+    <extendedProperties>
+      <properties xsi:type="designtime:ObjectProperty" name="Backing Store">
+        <value xsi:type="designtime:PropertyMap">
+          <properties xsi:type="designtime:SimpleProperty" name="Column Name" value=""/>
+        </value>
+      </properties>
+      <properties xsi:type="designtime:SimpleProperty" name="index" value="false"/>
+    </extendedProperties>
+    <exitAction name="ClockStateMain_Start_exitAction" ownerProjectName="Demo" actionText="" conditionText="">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </exitAction>
+    <timeoutExpression name="ClockStateMain_Start_timeoutExpression" ownerProjectName="Demo" returnType="long" actionText="return 0;" conditionText="" validity="CONDITION">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </timeoutExpression>
+  </stateEntities>
+  <stateEntities xsi:type="states:StateEnd" name="End" GUID="680C585A-4B35-BB1A-53C4-590D75F3E229" ownerStateMachinePath="/Concepts/ClockStateMain" incomingTransitions="//@stateTransitions.1">
+    <extendedProperties>
+      <properties xsi:type="designtime:ObjectProperty" name="Backing Store">
+        <value xsi:type="designtime:PropertyMap">
+          <properties xsi:type="designtime:SimpleProperty" name="Column Name" value=""/>
+        </value>
+      </properties>
+      <properties xsi:type="designtime:SimpleProperty" name="index" value="false"/>
+    </extendedProperties>
+    <entryAction name="ClockStateMain_End_entryAction" ownerProjectName="Demo" actionText="" conditionText="">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </entryAction>
+    <timeoutExpression name="ClockStateMain_End_timeoutExpression" ownerProjectName="Demo" returnType="long" actionText="return 0;" conditionText="" validity="CONDITION">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </timeoutExpression>
+  </stateEntities>
+  <stateEntities xsi:type="states:StateSimple" name="Ticking" GUID="32D1237A-FB15-EE85-4E77-A1BBD3C9631E" timeoutUnits="Seconds" incomingTransitions="//@stateTransitions.0" outgoingTransitions="//@stateTransitions.1">
+    <extendedProperties>
+      <properties xsi:type="designtime:ObjectProperty" name="Backing Store">
+        <value xsi:type="designtime:PropertyMap">
+          <properties xsi:type="designtime:SimpleProperty" name="Column Name" value=""/>
+        </value>
+      </properties>
+      <properties xsi:type="designtime:SimpleProperty" name="index" value="false"/>
+    </extendedProperties>
+    <entryAction name="ClockStateMain_Ticking_entryAction" ownerProjectName="Demo" actionText="" conditionText="">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </entryAction>
+    <exitAction name="ClockStateMain_Ticking_exitAction" ownerProjectName="Demo" actionText="" conditionText="">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </exitAction>
+    <timeoutAction name="ClockStateMain_Ticking_timeoutAction" ownerProjectName="Demo" actionText="clock.tick += 1;&#xA;System.debugOut(&quot;Clock &quot; + clock@extId + &quot; added a tick &quot; + clock.tick);" conditionText="">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </timeoutAction>
+    <timeoutExpression name="ClockStateMain_Ticking_timeoutExpression" ownerProjectName="Demo" returnType="long" actionText="return 10;" conditionText="" validity="CONDITION">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </timeoutExpression>
+  </stateEntities>
+  <stateTransitions name="Transition_0" GUID="D816B498-D5B0-2168-13C6-96C8A9014D37" ownerProjectName="Demo" ownerStateMachinePath="/Concepts/ClockStateMain" toState="//@stateEntities.2" fromState="//@stateEntities.0" lambda="true" label="">
+    <guardRule name="ClockStateMain_Transition_0_guardRule" ownerProjectName="Demo" actionText="" conditionText="" priority="5">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </guardRule>
+  </stateTransitions>
+  <stateTransitions name="Transition_1" GUID="DADECCC3-1C06-FC0A-60C8-2961C0885C51" ownerProjectName="Demo" ownerStateMachinePath="/Concepts/ClockStateMain" toState="//@stateEntities.1" fromState="//@stateEntities.2" label="">
+    <guardRule name="ClockStateMain_Transition_1_guardRule" ownerProjectName="Demo" actionText="" conditionText="false;" priority="5">
+      <symbols>
+        <symbolList idName="clock" type="/Concepts/Clock"/>
+      </symbols>
+    </guardRule>
+  </stateTransitions>
+</states:StateMachine>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channel:Channel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:channel="http:///com/tibco/cep/designtime/core/model/service/channel" xmlns:designtime="http:///com/tibco/cep/designtime/core/model/designtime_ontology.ecore" folder="/Channels/" name="FTL" description="" GUID="11AC426E-48CB-1BEA-2A6A-334A9DDD5C2E" ownerProjectName="Demo">
+  <driver configMethod="REFERENCE" reference="/SharedResources/FTL.ftl" label="FTL" channel="/">
+    <destinations name="demo" description="" GUID="47780E55-406C-8108-8496-C8A2C2868FE1" ownerProjectName="Demo" eventURI="/Events/Demo" serializerDeserializerClass="com.tibco.cep.driver.ftl.serializer.FTLSerializer" driverConfig="//@driver">
+      <properties>
+        <properties xsi:type="designtime:SimpleProperty" name="AppName" value="default"/>
+        <properties xsi:type="designtime:SimpleProperty" name="EndpointName" value="default"/>
+        <properties xsi:type="designtime:SimpleProperty" name="InstName" value="default"/>
+        <properties xsi:type="designtime:SimpleProperty" name="Formats" value="helloworld"/>
+        <properties xsi:type="designtime:SimpleProperty" name="Match" value="{&quot;type&quot;: &quot;hello&quot;}"/>
+        <properties xsi:type="designtime:SimpleProperty" name="DurableName" value=""/>
+      </properties>
+    </destinations>
+    <driverType xsi:type="channel:DriverTypeInfo" driverTypeName="FTL"/>
+  </driver>
+</channel:Channel>

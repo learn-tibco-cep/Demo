@@ -1,0 +1,20 @@
+/**
+ * @description 
+ */
+void rulefunction RuleFunctions.onDemoEvent {
+	attribute {
+		validity = ACTION;
+	}
+	scope {
+		Events.Demo evt;
+	}
+	body {
+		System.debugOut("Received message: " + evt.message);
+		evt.message = String.split(evt.message, " ")[0];
+		Concepts.Clock clock = Instance.getByExtIdByUri(evt.message, "/Concepts/Clock");
+		if (clock == null) {
+			clock = Concepts.Clock.Clock(evt.message /*extId String */, 0 /*tick long */);
+			System.debugOut("Created new clock " + clock@extId);
+		}
+	}
+}

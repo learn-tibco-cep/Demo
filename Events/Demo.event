@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event:SimpleEvent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:event="http:///com/tibco/cep/designtime/core/model/event" folder="/Events/" name="Demo" description="" GUID="A9480AD9-4485-F90B-8670-729B9F6117DF" ownerProjectName="Demo" superEventPath="" ttlUnits="Seconds">
+  <properties name="message" ownerProjectName="Demo"/>
+  <expiryAction name="Demo_expiryAction" ownerProjectName="Demo" actionText="" conditionText="">
+    <symbols>
+      <symbolList idName="demo" type="/Events/Demo"/>
+    </symbols>
+  </expiryAction>
+</event:SimpleEvent>

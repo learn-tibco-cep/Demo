@@ -1,0 +1,21 @@
+/**
+ * @description 
+ * @author Pro-Branes.local
+ */
+rule Rules.Reset {
+	attribute {
+		priority = 5;
+		forwardChain = true;
+	}
+	declare {
+		Concepts.Clock clock;
+		Events.Demo evt;
+	}
+	when {
+		evt.message == clock@extId;
+	}
+	then {
+		clock.tick = 0;
+		System.debugOut("Reset clock " + clock@extId);
+	}
+}

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cluster xmlns="http://tibco.com/businessevents/configuration/6.2">
+    <revision>
+        <version>2</version>
+        <author>yxu</author>
+        <date>2022/12/16 09:03:09</date>
+        <comment/>
+    </revision>
+    <name>Clock</name>
+    <message-encoding>UTF-8</message-encoding>
+    <provider/>
+    <object-management>
+        <memory-manager/>
+        <db-concepts>
+            <db-uris/>
+            <check-interval>60</check-interval>
+            <inactivity-timeout>0</inactivity-timeout>
+            <initial-size>5</initial-size>
+            <max-size>5</max-size>
+            <min-size>5</min-size>
+            <property-check-interval>900</property-check-interval>
+            <retry-count>-1</retry-count>
+            <wait-timeout>1</wait-timeout>
+        </db-concepts>
+    </object-management>
+    <telemetry-config>
+        <service-name>default</service-name>
+        <sampler>always_on</sampler>
+        <traceidratio>1.0</traceidratio>
+        <propagators>tracecontext</propagators>
+        <no-trace-uris/>
+        <span-exporter>
+            <type>none</type>
+        </span-exporter>
+    </telemetry-config>
+    <rulesets>
+        <rules id="all-rules">
+            <uri>/</uri>
+        </rules>
+    </rulesets>
+    <function-groups>
+        <functions id="all-functions">
+            <uri>/</uri>
+        </functions>
+    </function-groups>
+    <destination-groups/>
+    <process-groups/>
+    <log-configs>
+        <log-config id="logConfig">
+            <enabled>true</enabled>
+            <roles>*:info</roles>
+            <files>
+                <enabled>true</enabled>
+                <dir>logs</dir>
+                <name/>
+                <max-number>10</max-number>
+                <max-size>5000000</max-size>
+                <append>true</append>
+            </files>
+            <terminal>
+                <enabled/>
+                <sys-out-redirect>false</sys-out-redirect>
+                <sys-err-redirect>false</sys-err-redirect>
+                <encoding/>
+            </terminal>
+            <line-layout>
+                <enabled>false</enabled>
+                <class/>
+                <arg/>
+            </line-layout>
+        </log-config>
+    </log-configs>
+    <agent-classes>
+        <inference-agent-class id="inference-class">
+            <rules>
+                <ref>all-rules</ref>
+            </rules>
+            <destinations>
+                <destination id="demo_270D00EA">
+                    <pre-processor>/RuleFunctions/onDemoEvent</pre-processor>
+                    <queue-size/>
+                    <thread-count/>
+                    <threading-model>shared-queue</threading-model>
+                    <thread-affinity-rule-function/>
+                    <uri>/Channels/FTL/demo</uri>
+                </destination>
+            </destinations>
+            <startup/>
+            <shutdown/>
+            <local-cache>
+                <eviction>
+                    <max-size>1024</max-size>
+                    <max-time>900</max-time>
+                </eviction>
+            </local-cache>
+            <shared-queue>
+                <size>1024</size>
+                <workers>10</workers>
+            </shared-queue>
+            <load>
+                <max-active/>
+            </load>
+            <concurrent-rtc>false</concurrent-rtc>
+            <check-for-duplicates>false</check-for-duplicates>
+            <businessworks>
+                <uri/>
+            </businessworks>
+            <property-group/>
+        </inference-agent-class>
+    </agent-classes>
+    <processing-units>
+        <processing-unit id="default">
+            <agents>
+                <agent>
+                    <ref>inference-class</ref>
+                    <key/>
+                    <priority/>
+                </agent>
+            </agents>
+            <logs>logConfig</logs>
+            <hot-deploy>false</hot-deploy>
+            <cache-storage-enabled>false</cache-storage-enabled>
+            <db-concepts>false</db-concepts>
+            <property-group/>
+        </processing-unit>
+    </processing-units>
+    <load-balancer-configs>
+        <pair-configs/>
+        <adhoc-configs/>
+    </load-balancer-configs>
+    <property-group>
+        <property-group comment="" name="cluster-level properties">
+            <property-group comment="" name="auth">
+                <property name="be.mm.auth.type" value="file"/>
+                <property name="be.mm.auth.file.location" value="/Users/yxu/tibco/be6/be/6.2/mm/config/users.pwd"/>
+                <property name="java.security.auth.login.config" value="/Users/yxu/tibco/be6/be/6.2/mm/config/jaas-config.config"/>
+            </property-group>
+        </property-group>
+    </property-group>
+</cluster>
