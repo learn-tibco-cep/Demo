@@ -23,14 +23,16 @@ Video for this tutorial can be found in [Wiki page](https://github.com/learn-tib
 
 ## start docker container for FTL server
 
+This tutorial uses TIBCO FTL messaging service.  To test the application, you must follow the instruction in [Prerequisites](https://github.com/learn-tibco-cep/tutorials/wiki/Prerequisites), install and start a FTL server.  For example, you may start FTL server in Docker:
+
 ```
-docker run -d -p 8585:8585 ftl-tibftlserver:6.8.1 --name ftls1@$(hostname):8585
+docker run -d -p 8585:8585 ftl-tibftlserver:6.9.1 --name ftls1@$(hostname):8585
 ```
 
 Publish FTL test message `hello world earth`:
 
 ```
-docker run -it --rm ftl-client:6.8.1 tibftlsend $(hostname):8585
+docker run -it --rm ftl-client:6.9.1 tibftlsend $(hostname):8585
 ```
 
 ## `demo` FTL Destination
@@ -110,8 +112,14 @@ clock.tick += 1;
 System.debugOut("Clock " + clock@extId + " added a tick " + clock.tick);
 ```
 
-## Test the app
+## Test the Application
 
 * Build ear
 * Create cdd
 * Run configuration
+
+To Run the application as implemented in this repository, clone this repository, and import it into BE studio workspace, `$WS`, as a `Existing TIBCO BE Studio Project`.  Build the enterprise archive, e.g., `$WS/Demo.ear`, then start it as follows:
+
+```
+$BE_HOME/bin/be-engine --propFile $BE_HOME/bin/be-engine.tra -n demo -u default -c ${WS}/Demo/Demo.cdd Demo.ear
+```
