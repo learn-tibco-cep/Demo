@@ -21,7 +21,7 @@ Video for this tutorial can be found in [Wiki page](https://github.com/learn-tib
 * Define Clock state machine to increase its tick in 10-second interval
 * Define `CDD` for applicatoin deployment and execution
 
-## start docker container for FTL server
+## Start docker container for FTL server
 
 This tutorial uses TIBCO FTL messaging service.  To test the application, you must follow the instruction in [Prerequisites](https://github.com/learn-tibco-cep/tutorials/wiki/Prerequisites), install and start a FTL server.  For example, you may start FTL server in Docker:
 
@@ -35,7 +35,11 @@ Publish FTL test message `hello world earth`:
 docker run -it --rm ftl-client:6.9.1 tibftlsend $(hostname):8585
 ```
 
-## `demo` FTL Destination
+## `demo` FTL destination
+
+This destination specifies the `default` FTL endpoint that is already defined by the FTL installation.  The message format and content matcher is the same as that used by FTL sample app `tibftlsend` and `tibftlrecv`.  Thus, this BE application does not require any special configuration on FTL server.
+
+This destination is configured in `CDD` as an input destination of the `inference-class`, and so instances of this application will start a message consumer on this FTL endpoint.
 
 ```
 Name:               demo
@@ -46,10 +50,12 @@ Endpoint Name:      default
 Instance Name:      default
 Format Name:        helloworld
 Content Matcher:    {"type": "hello"}
-Durable Name:       demo
+Durable Name:       
 ```
 
 ## `onDemoEvent` Rule Function
+
+This function is configured in `CDD` file as the `preprocessor` for the `demo` FTL destination, and thus it will be executed for every FTL message received from the FTL endpoint.
 
 ```
 void rulefunction RuleFunctions.onDemoEvent {
@@ -73,6 +79,8 @@ void rulefunction RuleFunctions.onDemoEvent {
 
 ## `Reset` Rule
 
+This rule will be executed whenever there is a `Demo` event and a `Clock` concept in the rules agenda, and they match the condition `evt.message == clock@extId`.  The preprocessor function `onDemoEvent` is implemented such that this condition is `true`.  Thus, this rule will be executed after the preprocessor function at runtime, and it will set the clock's tick to 0.
+
 ```
 rule Rules.Reset {
     attribute {
@@ -95,6 +103,8 @@ rule Rules.Reset {
 
 ## Clock State Machine: `ClockStateMain`
 
+This state machine is configured as the main state machine of the `Clock` concept.  Thus the state machine will be automatically started whenever a clock is brought into the engine working memory. It simply times out every 10 seconds, and increases its tick at every timeout.
+
 General: 
 * Owner Concept: /Concepts/Clock
 * Main: check the box
@@ -115,7 +125,7 @@ System.debugOut("Clock " + clock@extId + " added a tick " + clock.tick);
 ## Test the Application
 
 * Build ear
-* Create cdd
+* Create cdd, configure input destinations and include all rules.
 * Run configuration
 
 To Run the application as implemented in this repository, clone this repository, and import it into BE studio workspace, `$WS`, as a `Existing TIBCO BE Studio Project`.  Build the enterprise archive, e.g., `$WS/Demo.ear`, then start it as follows:
