@@ -133,3 +133,7 @@ To Run the application as implemented in this repository, clone this repository,
 ```
 $BE_HOME/bin/be-engine --propFile $BE_HOME/bin/be-engine.tra -n demo -u default -c ${WS}/Demo/Demo.cdd Demo.ear
 ```
+
+## Next Steps
+
+The [Wiki page](https://github.com/learn-tibco-cep/tutorials/wiki/Get-Started) describes more tips and tutorials that even experienced BE developers could benefit in practice.  So, we recommend reading and testing with the other tutorials in the wiki pages, and pay attention to the practical tips on each of the tutorial pages.
